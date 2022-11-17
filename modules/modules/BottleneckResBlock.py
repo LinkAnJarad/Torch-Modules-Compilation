@@ -3,7 +3,8 @@ from torch import nn
 
 class BottleneckResBlock(nn.Module):
     '''
-    A residual bottleneck block.
+    A residual bottleneck block. From the paper "Deep Residual Learning for Image Recognition"
+    https://arxiv.org/pdf/1512.03385.pdf
     
     Parameters:
     in_channels (int): number of input channels
