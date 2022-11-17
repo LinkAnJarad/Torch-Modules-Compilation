@@ -14,4 +14,4 @@ class RefinementBlock(nn.Module):
   def forward(self, visual_tokens, cnn_output):
     self_att = self.self_att(visual_tokens, visual_tokens, visual_tokens)
     cross_att = self.cross_att(self_att, cnn_output, cnn_output)
-    return 
+    return cross_att
