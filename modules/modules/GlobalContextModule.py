@@ -20,8 +20,3 @@ class GlobalContextModule(nn.Module):
         att = x * self.context_modeling(x).softmax(1)
         x = x + self.transform(att)
         return x
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Pri
