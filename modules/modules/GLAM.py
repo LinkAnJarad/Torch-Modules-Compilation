@@ -10,13 +10,17 @@ class GLAM(nn.Module):
     
     def __init__(self, in_channels, num_reduced_channels, feature_map_size, kernel_size):
         '''
-        Song, C. H., Han, H. J., & Avrithis, Y. (2022). All the attention you need: Global-local, spatial-channel attention for image retrieval. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 2754-2763).
-
-        Args:
+        Introduced by Song, C. H., Han, H. J., & Avrithis, Y. (2022). All the attention you need: Global-local, spatial-channel attention for image retrieval. 
+        https://openaccess.thecvf.com/content/WACV2022/papers/Song_All_the_Attention_You_Need_Global-Local_Spatial-Channel_Attention_for_Image_WACV_2022_paper.pdf
+        
+        Parameters:
             in_channels (int): number of channels of the input feature map
             num_reduced_channels (int): number of channels that the local and global spatial attention modules will reduce the input feature map. Refer to figures 3 and 5 in the paper.
             feaure_map_size (int): height/width of the feature map
             kernel_size (int): scope of the inter-channel attention
+            
+        Returns:
+        Tensor of shape (batch_size, channels, height, width); Same shape as input
         '''
         
         super().__init__()
@@ -26,7 +30,7 @@ class GLAM(nn.Module):
         self.global_channel_att = GlobalChannelAttention(feature_map_size, kernel_size)
         self.global_spatial_att = GlobalSpatialAttention(in_channels, num_reduced_channels)
         
-        self.fusion_weights = nn.Parameter(torch.Tensor([0.333, 0.333, 0.333])) # equal intial weights
+        self.fusion_weights = nn.Parameter(torch.Tensor([0.33333, 0.33333, 0.33333])) # equal weights
         
     def forward(self, x):
         local_channel_att = self.local_channel_att(x) # local channel
