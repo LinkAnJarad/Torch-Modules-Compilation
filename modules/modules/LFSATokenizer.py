@@ -3,7 +3,17 @@ from torch import nn
 
 class LFSATokenizer(nn.Module):
     '''
-    Learning Token-Based Representation for Image Retrieval
+    Implementation of "Learning Token-Based Representation for Image Retrieval" (https://arxiv.org/pdf/2112.06159.pdf)
+    A module that converts feature maps from a CNN (in the paper's case, feature maps from a local-feature-self-attention module) and tokenizes them "into L visual tokens". To be used prior to the refinement block as described in the paper.
+    
+    Parameters:
+    in_channels (int): number of input channels
+    num_att_maps (int): number of tokens to tokenize the input into; also the number of channels used by the spatial attention
+    
+    Returns:
+    Tuple containing:
+        Tensor of shape (batch_size, num_att_maps, in_channels)
+        Original, flattened input across the spatial dimension and permuted; shape (batch_size, height*width, in_channels)
     '''
     def __init__(self, in_channels, num_att_maps):
         super().__init__()
