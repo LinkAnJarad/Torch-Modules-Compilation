@@ -3,7 +3,14 @@ from torch import nn
 
 class GlobalContextModule(nn.Module):
     '''
-    Implementation of https://arxiv.org/pdf/1904.11492.pdf
+    A sort of self-attention (non-local) block on feature maps.
+    Implementation of :GCNet: Non-local Networks Meet Squeeze-Excitation Networks and Beyond" (https://arxiv.org/pdf/1904.11492.pdf)
+    
+    Parameters:
+    input_channels (int): Number of input channels
+    
+    Returns:
+    Tensor of shape (batch_size, channels, height, width); same as input
     '''
     def __init__(self, input_channels):
         super().__init__()
