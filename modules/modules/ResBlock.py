@@ -28,7 +28,7 @@ class ResBlock(nn.Module):
             nn.BatchNorm2d(out_channels),
             nn.SiLU(),
             nn.Dropout(dropout),
-      
+        )
         self.norm_nonlinear = nn.Sequential(
             nn.BatchNorm2d(out_channels),
             nn.SiLU(),
