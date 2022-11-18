@@ -1,6 +1,25 @@
 # Torch-Modules-Compilation
 A compilation of various torch modules used in ML papers.
 
+## Table of Contents
+- [Modules](#modulesblocks)
+    - [Bottleneck Residual Block](#bottleneck-residual-block)
+    - [Depthwise Seperable Convolution](#depthwise-seperable-convolution)
+    - [SAGAN self-attention module](#sagan-self-attention-module)
+    - [Global-Local Attention Module](#global-local-attention-module)
+    - [Global Context Module](#global-context-module)
+    - [LFSA Tokenizer and Refinement Block](#lfsa-tokenizer-and-refinement-block)
+    - [Parameter-Free Channel Attention (PFCA)](#parameter-free-channel-attention-pfca)
+    - [Patch Merger](#patch-merger)
+    - [ResBlock](#resblock)
+    - [Up/Down sample ResBlock](#updown-sample-resblock)
+    - [Residual MLP Block](#residual-mlp-block)
+    - [Residual MLP Downsampling Block](#residual-mlp-downsampling-block)
+    - [Transformer Encoder Layer](#transformer-encoder-layer)
+    - [UNet Encoder and Decoder](#unet-encoder-and-decoder)
+
+- [License](#license)
+
 # Modules/Blocks
 
 ## Bottleneck Residual Block
@@ -57,7 +76,7 @@ block(x).shape # (32, 128, 16, 16)
 ## SAGAN self-attention module
 ![image](https://user-images.githubusercontent.com/79294502/202611126-ed4b6a88-5a7f-4f47-b89c-e4b9188b4db7.png)
 
-A feature map self-attention module used in SAGAN; ["Self-Attention Generative Adversarial Networks"](https://arxiv.org/pdf/1805.08318.pdf). Image also from this paper. This code implementation was copied from https://github.com/rosinality/sagan-pytorch/blob/master/model.py#L82 under Apache 2.0 License.
+A feature map self-attention module used in SAGAN; ["Self-Attention Generative Adversarial Networks"](https://arxiv.org/pdf/1805.08318.pdf). Image also from this paper. This code implementation was copied and modified from https://github.com/rosinality/sagan-pytorch/blob/master/model.py#L82 under Apache 2.0 License. Modification removes spectral initalization.
     
 ### Parameters
 `in_channels` (int): Number of input channels
@@ -383,3 +402,6 @@ encoder_features = unet_encoder(images)
 output = unet_decoder(encoder_features)
 print(output.shape) # (16, 64, 224, 224)
 ```
+
+# License
+Unless specified, some of these modules are licensed under various licenses and/or copied from other repositories, such as MIT and Apache. Take note of these licenses when using these code in your work. The rest are of my own implementation, which is under the MIT license.
