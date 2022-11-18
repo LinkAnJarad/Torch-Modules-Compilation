@@ -3,7 +3,16 @@ from torch import nn
 
 class ResidualMLP_block(nn.Module):
     '''
-    Adapted from https://arxiv.org/pdf/2108.08186.pdf
+    Adapted from "Generalizing MLPs With Dropouts, Batch Normalization, and Skip Connections" (https://arxiv.org/pdf/2108.08186.pdf)
+    An improvement of standard MLPs along with residual connections. This implements the residual MLP block (eq. 5 in the paper)
+    
+    Parameters:
+    dim (int): number of input dimensions
+    ic_first (bool): normalize and dropout at the start
+    dropout (float): dropout rate
+    
+    Returns:
+    Tensor of shape (batch_size, dim)
     '''
     def __init__(self, dim, ic_first=True, dropout=0.):
         super().__init__()
