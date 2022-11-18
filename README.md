@@ -289,3 +289,97 @@ block = modules.ResidualMLP_block(dim=96, ic_first=True, dropout=0.1)
 
 block(x).shape # (32, 96)
 ```
+
+## Residual MLP Downsampling Block
+
+An improvement of standard MLPs along with residual connections. From ["Generalizing MLPs With Dropouts, Batch Normalization, and Skip Connections"](https://arxiv.org/pdf/2108.08186.pdf). This implements the residual MLP block (eq. 5 in the paper).
+
+### Parameters
+`dim` (int): number of input dimensions
+
+`downsample_dim` (int): number of output dimensions
+
+`dropout` (float): dropout rate
+
+### Usage
+```python
+from torch_modules_compilation import modules
+
+x = torch.randn(32, 96) # (batch_size, dim)
+block = modules.ResidualMLP_downsample(dim=96, downsample_dim=48, dropout=0.1)
+
+block(x).shape # (32, 48)
+```
+
+## Transformer Encoder Layer
+Standard transformer encoder layer with queries, keys, and values as inputs.
+    
+### Parameters
+
+`d_model` (int): model dimensionality
+
+`nhead` (int): number of attention heads
+
+`dim_feedforward` (int): number of hidden dimensions in the feedforward layers
+
+`dropout` (float): dropout rate
+
+`kdim` (int, optional): dimensions of the keys
+
+`vdim` (int, optional): dimensions of the values
+
+### Usage
+
+```python
+from torch_modules_compilation import modules
+
+queries = torch.randn(32, 20, 64) # (batch_size, seq_length, dim)
+keys = torch.randn(32, 19, 48) # (batch_size, seq_length, dim)
+values = torch.randn(32, 19, 96) # (batch_size, seq_length, dim)
+
+block = modules.TransformerEncoderLayer(
+    d_model=64,
+    nhead=8, 
+    dim_feedforward=256,
+    dropout=0.2,
+    kdim=48,
+    vdim=96
+)
+
+block(queries, keys, values).shape # (32, 20, 64)
+```
+
+## UNet Encoder and Decoder
+![image](https://user-images.githubusercontent.com/79294502/202618135-a0b6e0f1-db4e-433e-bbaa-a1c5d104215d.png)
+
+Standard UNet implementation. From the paper [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/pdf/1505.04597.pdf).
+
+### Parameters
+
+**UNet Encoder**
+
+`channels` (list of ints): A list containing the number of channels in the encoder. E.g [3, 64, 128, 256]
+
+`dropout` (float): dropout rate
+
+**UNet Decoder**
+
+`channels` (list of ints): A list containing the number of channels in the encoder. E.g. [256, 128, 64, 3]
+
+`dropout` (float): dropout rate
+
+### Usage
+
+```python
+from torch_modules_compilation import modules
+
+images = torch.randn(16, 3, 224, 224) # (batch_size, channels, height, width)
+
+unet_encoder = modules.UnetEncoder(channels=[3,64,128,256], dropout=0.1)
+unet_decoder = modules.UnetDecoder(channels=[256,128,64,3], dropout=0.1)
+
+encoder_features = unet_encoder(images)
+
+output = unet_decoder(encoder_features)
+print(output.shape) # (16, 64, 224, 224)
+```
