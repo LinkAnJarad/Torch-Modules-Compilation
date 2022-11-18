@@ -4,12 +4,14 @@ from torch import nn
 class ParameterFreeChannelAttention(nn.Module):
     '''
     Shi, Yuxuan & Xu, Jun & Yang, Lingxiao & An, Wangpeng & Zhen, Xiantong. (2022). PARAMETER-FREE CHANNEL ATTENTION FOR IMAGE CLASSIFICATION AND SUPER-RESOLUTION. 10.13140/RG.2.2.20039.78241.
-    
     Computes attention for each input feature map without the use of paramters.
     
     Parameters:
     feature_map_size (int): Length/width of the input feature map
     _lambda: A hyperparameter that is added to the variance (default: 1e-4)
+    
+    Returns:
+    Tensor of shape (batch_size, channels, height, width)
     '''
     def __init__(self, feature_map_size, _lambda=1e-4):
         super().__init__()
