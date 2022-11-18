@@ -45,6 +45,9 @@ class UnetDecoder(nn.Module):
     Parameters:
     channels (list of ints): A list containing the number of channels in the encoder. E.g. [256, 128, 64, 3]
     dropout (float): dropout rate
+    
+    Returns:
+    Tensor of shape (batch_size, channels, height, width)
     '''
     def __init__(self, channels, dropout):
         super().__init__()
