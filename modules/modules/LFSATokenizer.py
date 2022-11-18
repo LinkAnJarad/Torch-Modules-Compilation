@@ -3,7 +3,7 @@ from torch import nn
 
 class LFSATokenizer(nn.Module):
     '''
-    Implementation of "Learning Token-Based Representation for Image Retrieval" (https://arxiv.org/pdf/2112.06159.pdf)
+    Implementation of the tokenizer in "Learning Token-Based Representation for Image Retrieval" (https://arxiv.org/pdf/2112.06159.pdf)
     A module that converts feature maps from a CNN (in the paper's case, feature maps from a local-feature-self-attention module) and tokenizes them "into L visual tokens". To be used prior to the refinement block as described in the paper.
     
     Parameters:
