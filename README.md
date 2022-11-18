@@ -1,5 +1,5 @@
 # Torch-Modules-Compilation
-A compilation of various torch modules used in ML papers.
+A compilation of various torch modules used in ML papers. More to be added!
 
 ## Table of Contents
 - [Modules](#modulesblocks)
