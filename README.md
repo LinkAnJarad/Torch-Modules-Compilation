@@ -409,4 +409,4 @@ print(output.shape) # (16, 64, 224, 224)
 ```
 
 # License
-Unless specified, some of these modules are licensed under various licenses and/or copied from other repositories, such as MIT and Apache. Take note of these licenses when using these code in your work. The rest are of my own implementation, which is under the MIT license.
+Unless specified, some of these modules are licensed under various licenses and/or copied from other repositories, such as MIT and Apache. Take note of these licenses when using these code in your work. The rest are of my own implementation, which is under the MIT license. [See this repo's license file](LICENSE)
