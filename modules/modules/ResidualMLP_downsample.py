@@ -3,7 +3,16 @@ from torch import nn
 
 class ResidualMLP_downsample(nn.Module):
     '''
-    Adapted from https://arxiv.org/pdf/2108.08186.pdf
+    Adapted from "Generalizing MLPs With Dropouts, Batch Normalization, and Skip Connections" (https://arxiv.org/pdf/2108.08186.pdf)
+    An improvement of standard MLPs along with residual connections. This implements the downsampling MLP block (eq. 6 in the paper)
+    
+    Parameters:
+    dim (int): number of input dimensions
+    downsample_dim (int): number of output dimensions
+    dropout (float): dropout rate
+    
+    Returns:
+    Tensor of shape (batch_size, downsample_dim)
     '''
     def __init__(self, dim, downsample_dim, dropout):
         super().__init__()
