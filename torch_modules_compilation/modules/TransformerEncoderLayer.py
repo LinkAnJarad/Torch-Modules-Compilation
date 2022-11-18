@@ -42,4 +42,4 @@ class TransformerEncoderLayer(nn.Module):
         attn_output = self.norm1(query + attn_output)
         ffn_output = self.ffn(attn_output)
         ffn_output =  self.norm2(ffn_output + attn_output)
-        return 
+        return ffn_output
