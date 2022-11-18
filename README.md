@@ -278,7 +278,7 @@ Composed of several residual blocks and a down/up sampling at the end; adapted f
 ```python
 from torch_modules_compilation import modules
 
-x = torch.randn(32, 64, 96, 96) # (batch_size, seq_length, channels)
+x = torch.randn(32, 64, 96, 96) # (batch_size, channels, height, width)
 block = modules.ResBlockUpDownSample(
     in_channels=64, 
     out_channels=128, 
@@ -382,13 +382,13 @@ Standard UNet implementation. From the paper [U-Net: Convolutional Networks for 
 
 **UNet Encoder**
 
-`channels` (list of ints): A list containing the number of channels in the encoder. E.g [3, 64, 128, 256]
+`channels` (list of ints): A list containing the number of channels in the encoder. E.g `[3, 64, 128, 256]`
 
 `dropout` (float): dropout rate
 
 **UNet Decoder**
 
-`channels` (list of ints): A list containing the number of channels in the encoder. E.g. [256, 128, 64, 3]
+`channels` (list of ints): A list containing the number of channels in the encoder. E.g. `[256, 128, 64, 3]`
 
 `dropout` (float): dropout rate
 
