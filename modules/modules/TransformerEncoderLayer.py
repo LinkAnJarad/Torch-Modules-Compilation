@@ -2,6 +2,20 @@ import torch
 from torch import nn
 
 class TransformerEncoderLayer(nn.Module):
+    '''
+    Standard transformer encoder layer with queries, keys, and values as inputs.
+    
+    Parameters:
+    d_model (int): model dimensionality
+    nhead (int): number of attention heads
+    dim_feedforward (int): number of hidden dimensions in the feedforward layers
+    dropout (float): dropout rate
+    kdim (int, optional): dimensions of the keys
+    vdim (int, optional): dimensions of the values
+    
+    Returns:
+    Tensor of shape (batch_size, seq_len_of_queries, dim_of_queries); Same shape as queries
+    '''
     def __init__(self, d_model, nhead, dim_feedforward, dropout, kdim=None, vdim=None):
         super().__init__()
         
