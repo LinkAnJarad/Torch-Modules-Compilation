@@ -19,18 +19,18 @@ class ResBlock(nn.Module):
         
         self.conv1 = nn.Sequential(
             nn.Conv2d(in_channels, in_channels, kernel_size, padding='same'),
-            nn.BatchNorm2d(out_channels),
+            nn.BatchNorm2d(in_channels),
             nn.SiLU(),
             nn.Dropout(dropout),
         )
         self.conv2 = nn.Sequential(
             nn.Conv2d(in_channels, in_channels, kernel_size, padding='same'),
-            nn.BatchNorm2d(out_channels),
+            nn.BatchNorm2d(in_channels),
             nn.SiLU(),
             nn.Dropout(dropout),
         )
         self.norm_nonlinear = nn.Sequential(
-            nn.BatchNorm2d(out_channels),
+            nn.BatchNorm2d(in_channels),
             nn.SiLU(),
         )
         
