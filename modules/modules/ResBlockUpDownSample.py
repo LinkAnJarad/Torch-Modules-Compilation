@@ -21,6 +21,20 @@ class BasicConv(nn.Module):
     
 
 class ResBlockUpDownSample(nn.Module):
+    '''
+    Composed of several residual blocks and a down/up sampling at the end; adapted from Stable Diffusion's ResnetBlock (https://github.com/CompVis/stable-diffusion/blob/ce05de28194041e030ccfc70c635fe3707cdfc30/ldm/modules/diffusionmodules/model.py#L82)
+    
+    Parameters:
+    in_channels (int): number of input channels
+    out_channels (int): number of output channels
+    num_groups (int): number of groups for Group Normalization
+    num_layers (int): number of residual blocks
+    dropout (float): dropout rate
+    sample (str): One of "down", "up", or "none". For downsampling 2x, use "down". For upsampling 2x, use "up". Use "none" for no down/up sampling.
+    
+    Returns:
+    Tensor of shape (batch_size, channels, height, width)
+    '''
     def __init__(self, in_channels, out_channels, num_groups, num_layers, dropout, sample='down'):
         super().__init__()
         
