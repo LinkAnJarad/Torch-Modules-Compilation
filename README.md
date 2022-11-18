@@ -107,7 +107,7 @@ An convolutional attention module introduced in the paper ["All the attention yo
 
 `num_reduced_channels` (int): number of channels that the local and global spatial attention modules will reduce the input feature map. Refer to figures 3 and 5 in the paper.
 
-`feaure_map_size` (int): height/width of the feature map
+`feaure_map_size` (int): height/width of the feature map. The height/width of the input feature maps must be at least 7, due to the 7x7 convolution (3x3 dilated conv) in the module.
 
 `kernel_size` (int): scope of the inter-channel attention
 
