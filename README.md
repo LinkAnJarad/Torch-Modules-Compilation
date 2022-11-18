@@ -1,5 +1,10 @@
 # Torch-Modules-Compilation
-A compilation of various torch modules used in ML papers. More to be added!
+A compilation of implementations of various ML papers, especially in computer vision. This contains some self-implementations and unofficial & official implementations. More to be added.
+
+## Install
+```
+$ pip install torch-modules-compilation
+```
 
 ## Table of Contents
 - [Modules](#modulesblocks)
