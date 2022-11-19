@@ -316,7 +316,7 @@ block(x).shape # (32, 96)
 
 ## Residual MLP Downsampling Block
 
-An improvement of standard MLPs along with residual connections. From ["Generalizing MLPs With Dropouts, Batch Normalization, and Skip Connections"](https://arxiv.org/pdf/2108.08186.pdf). This implements the residual MLP block (eq. 5 in the paper).
+An improvement of standard MLPs along with residual connections. From ["Generalizing MLPs With Dropouts, Batch Normalization, and Skip Connections"](https://arxiv.org/pdf/2108.08186.pdf). This implements the residual MLP block (eq. 6 in the paper).
 
 ### Parameters
 `dim` (int): number of input dimensions
