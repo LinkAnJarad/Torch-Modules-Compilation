@@ -472,7 +472,7 @@ Computes attention in a feature map across all three dimensions (channel and bot
 ### Usage
 
 ```python
-feature_maps = torch.randn(2, 16, 10, 10)
+feature_maps = torch.randn(2, 16, 10, 10) # (batch_size, channels, height, width)
 triplet_attention = TripletAttention(in_channels=16, height=10, width=10)
 
 triplet_attention(feature_maps) # shape (2, 16, 10, 10); same as input
