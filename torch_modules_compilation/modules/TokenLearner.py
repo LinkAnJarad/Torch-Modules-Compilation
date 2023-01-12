@@ -2,6 +2,16 @@ import torch
 from torch import nn
 
 class TokenLearner(nn.Module):
+    '''
+    Module designed for reducing and generating visual tokens given a feature map. From https://arxiv.org/pdf/2106.11297.pdf
+    
+    Parameters
+    in_channels (int): Number of input channels
+    num_tokens (int): Number of tokens to reduce to
+    
+    Returns
+    Tensor of shape (batch_size, num_tokens, in_channels)
+    '''
     def __init__(self, in_channels, num_tokens):
         super().__init__()
         
