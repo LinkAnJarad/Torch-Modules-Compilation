@@ -32,7 +32,17 @@ class Branch(nn.Module):
       
 class TripletAttention(nn.Module):
     '''
-    https://arxiv.org/pdf/2010.03045v2.pdf
+    Computes attention in a feature map across all three dimensions (channel and both spatial dims). From https://arxiv.org/pdf/2010.03045v2.pdf
+
+    Parameters
+    in_channels (int): Number of input channels
+    height (int): height of feature map
+    width (int): width of feature map
+    kernel_size (int): kernel size of the convolutions. Default: 7
+    
+    Returns
+    Tensor of shape (batch_size, in_channels, height, width), same as input
+    
     '''
     def __init__(self, in_channels, height, width, kernel_size=7):
         super().__init__()
