@@ -382,7 +382,7 @@ Standard UNet implementation. From the paper [U-Net: Convolutional Networks for 
 
 **UNet Encoder**
 
-`channels` (list of ints): A list containing the number of channels in the encoder. E.g `[3, 64, 128, 256]`
+`channels` (list): A list containing the number of channels in the encoder. E.g `[3, 64, 128, 256]`
 
 `dropout` (float): dropout rate
 
@@ -407,6 +407,74 @@ encoder_features = unet_encoder(images)
 output = unet_decoder(encoder_features)
 print(output.shape) # (16, 64, 224, 224)
 ```
+
+## Squeeze-Excitation Module
+![image](https://user-images.githubusercontent.com/79294502/211972272-6da522e1-0876-4350-9a59-5df429722cbb.png)
+
+Module that computes channel-wise interactions in a feature map. From [Squeeze-and-Excitation Networks](https://arxiv.org/pdf/1709.01507v4.pdf).
+
+### Parameters
+`in_channels` (int): Number of input channels
+
+`reduced_channels` (int): Number of channels to reduce to in the "squeeze" part of the module
+
+`feature_map_size` (int): height/width of the feature map
+
+### Usage
+
+```python
+from torch_modules_compilation import modules
+
+feature_maps = torch.randn(16, 128, 64, 64) # (batch_size, channels, height, width)
+se_module = modules.SEModule(in_channels=128, reduced_channels=32, feature_map_size=64)
+
+se_module(feature_maps) # shape (16, 128, 64, 64); same as input
+```
+
+## Token Learner
+![image](https://user-images.githubusercontent.com/79294502/211973293-bb8eac3f-8fa5-4ee4-a36d-50db0c1f13d4.png)
+
+Module designed for reducing and generating visual tokens given a feature map. From [TokenLearner: What Can 8 Learned Tokens Do for Images and Videos?](https://arxiv.org/pdf/2106.11297.pdf)
+
+### Parameters
+
+`in_channels` (int): Number of input channels
+
+`num_tokens` (int): Number of tokens to reduce to
+
+### Usage
+
+```python
+feature_maps = torch.randn(2, 16, 10, 10) # (batch_size, channels, height, width)
+token_learner = TokenLearner(in_channels=16, num_tokens=50) # reduce tokens from 10*10 to 50
+
+token_learner(feature_maps) # shape (2, 50, 16)
+```
+
+## Triplet Attention
+![image](https://user-images.githubusercontent.com/79294502/211974436-50e7fe32-dd34-4b4e-aaa6-0b79855cc56a.png)
+
+Computes attention in a feature map across all three dimensions (channel and both spatial dims). From [Rotate to Attend: Convolutional Triplet Attention Module](https://arxiv.org/pdf/2010.03045v2.pdf).
+
+### Parameters
+
+`in_channels` (int): Number of input channels
+
+`height` (int): height of feature map
+
+`width` (int): width of feature map
+
+`kernel_size` (int): kernel size of the convolutions. Default: 7
+
+### Usage
+
+```python
+feature_maps = torch.randn(2, 16, 10, 10)
+triplet_attention = TripletAttention(in_channels=16, height=10, width=10)
+
+triplet_attention(feature_maps) # shape (2, 16, 10, 10); same as input
+```
+
 
 # License
 Unless specified, some of these modules are licensed under various licenses and/or copied from other repositories, such as MIT and Apache. Take note of these licenses when using these code in your work. The rest are of my own implementation, which is under the MIT license. [See this repo's license file](LICENSE)
