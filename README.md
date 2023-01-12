@@ -22,6 +22,9 @@ $ pip install torch-modules-compilation
     - [Residual MLP Downsampling Block](#residual-mlp-downsampling-block)
     - [Transformer Encoder Layer](#transformer-encoder-layer)
     - [UNet Encoder and Decoder](#unet-encoder-and-decoder)
+    - [Squeeze-Excitation Module](#squeeze-excitation-module)
+    - [Token Learner](#token-learner)
+    - [Triplet Attention](#triplet-attention)
 
 - [License](#license)
 
