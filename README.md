@@ -448,8 +448,10 @@ Module designed for reducing and generating visual tokens given a feature map. F
 ### Usage
 
 ```python
+from torch_modules_compilation import modules
+
 feature_maps = torch.randn(2, 16, 10, 10) # (batch_size, channels, height, width)
-token_learner = TokenLearner(in_channels=16, num_tokens=50) # reduce tokens from 10*10 to 50
+token_learner = modules.TokenLearner(in_channels=16, num_tokens=50) # reduce tokens from 10*10 to 50
 
 token_learner(feature_maps) # shape (2, 50, 16)
 ```
@@ -472,8 +474,10 @@ Computes attention in a feature map across all three dimensions (channel and bot
 ### Usage
 
 ```python
+from torch_modules_compilation import modules
+
 feature_maps = torch.randn(2, 16, 10, 10) # (batch_size, channels, height, width)
-triplet_attention = TripletAttention(in_channels=16, height=10, width=10)
+triplet_attention = modules.TripletAttention(in_channels=16, height=10, width=10)
 
 triplet_attention(feature_maps) # shape (2, 16, 10, 10); same as input
 ```
